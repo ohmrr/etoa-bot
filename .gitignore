@@ -1,0 +1,10 @@
+# Bot Data
+src/Data/config.json
+
+# Yarn
+yarn-debug.log*
+yarn-error.log*
+.yarn/
+
+# Node Modules
+node_modules/
