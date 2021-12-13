@@ -5,6 +5,10 @@ module.exports = new Command({
     description: 'Shows the ping of the bot.',
 
     async run(message, args, client) {
-        message.channel.send(`${client.ws.ping} ms 👽`);
+        message.channel.send('Bot Latency:').then((result) => {
+            const ping = result.createdTimestamp - message.createdTimestamp;
+            
+            result.edit(`Bot: ${ping}ms , API: ${client.ws.ping}ms 👽`);
+        });
     },
 });

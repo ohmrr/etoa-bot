@@ -4,8 +4,13 @@ const config = require('../Data/config.json');
 const intents = new Discord.Intents(4039);
 
 class Client extends Discord.Client {
-    constructor(options) {
-        super({ intents });
+    constructor() {
+        super({
+            intents,
+            allowedMentions: {
+                parse: ['users', 'roles'],
+            },
+        });
 
         /**
          * @type {Discord.Collection<string, Command>}
