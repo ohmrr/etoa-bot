@@ -8,3 +8,7 @@ yarn-error.log*
 
 # Node Modules
 node_modules/
+
+# DS_Store
+.DS_Store
+assets/.DS_Store

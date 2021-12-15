@@ -15,21 +15,12 @@ fs.readdirSync('./src/Commands')
         console.log(`[ ${command.name} ] loaded...`);
     });
 
-client.once('ready', () => {
-    console.log('All modules loaded. eTOA-001 is up and running');
-});
-
-client.on('messageCreate', (message) => {
-    if (message.author.bot) return;
-    if (!message.content.startsWith(config.prefix)) return;
-    if (!message.guild) return;
-
-    const args = message.content.substring(config.prefix.length).split(/ +/);
-    const command = client.commands.find(cmd => cmd.name === args[0]);
-
-    if (!command) return;
-
-    command.run(message, args, client);
-});
+fs.readdirSync('./src/Events')
+    .filter((file) => file.endsWith('.js'))
+    .forEach((file) => {
+        const event = require(`./Events/${file}`);
+        client.on(event.event, event.run.bind(null, this));
+        console.log(`[ ${event.event} ] loaded...`)
+    });
 
 client.login(config.token);
