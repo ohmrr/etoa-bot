@@ -26,6 +26,4 @@ yarn add discord.js
 
 Create a folder called "Data" in src. Then, inside the folder, create "config.json". You will need to add a prefix (e!) and a token, which you get from the Discord Developer Portal. Never share your token with anyone.
 
-Example:
-
 <img src="./assets/example.png" alt ="example" align="center"/>
