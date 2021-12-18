@@ -1,5 +1,4 @@
 const eTOA = require('./Structures/eTOA.js');
-const { prefix } = require('./Data/config.json');
 const client = new eTOA();
 
 client.once('ready', () => {
@@ -8,10 +7,10 @@ client.once('ready', () => {
 
 client.on('messageCreate', (message) => {
     if (message.author.bot) return;
-    if (!message.content.startsWith(prefix)) return;
+    if (!message.content.startsWith(client.prefix)) return;
     if (!message.guild) return;
 
-    const args = message.content.substring(prefix.length).split(/ +/);
+    const args = message.content.substring(client.prefix.length).split(/ +/);
 });
 
 client.build();
