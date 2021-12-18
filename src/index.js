@@ -1,13 +1,17 @@
-const { Client, Intents, Collection } = require('discord.js');
-const { token } = require('./Data/config.json');
-const intents = new Intents(4039);
-const client = new Client({
-    intents,
-    allowedMentions: { parse: ['users', 'roles'] },
-});
+const eTOA = require('./Structures/eTOA.js');
+const { prefix } = require('./Data/config.json');
+const client = new eTOA();
 
 client.once('ready', () => {
     console.log('eTOA-001 is ready for use.');
 });
 
-client.login(token);
+client.on('messageCreate', (message) => {
+    if (message.author.bot) return;
+    if (!message.content.startsWith(prefix)) return;
+    if (!message.guild) return;
+
+    const args = message.content.substring(prefix.length).split(/ +/);
+});
+
+client.build();
