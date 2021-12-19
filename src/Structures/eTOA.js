@@ -1,4 +1,4 @@
-const { Client, Collection, Intents, DiscordAPIError } = require('discord.js');
+const { Client, Collection, Intents } = require('discord.js');
 const fs = require('fs');
 const Command = require('./Command.js');
 const config = require('../Data/config.json');
@@ -27,12 +27,23 @@ class eTOA extends Client {
     }
 
     loadCommands() {
-        const commandFiles = fs.readdirSync('./src/Commands')
-            .filter(file => file.endsWith('.js'));
-        
-        const commands = commandFiles.map(file => require(`../Commands/${file}`));
+        const commandFiles = fs
+            .readdirSync('./src/Commands')
+            .filter((file) => file.endsWith('.js'));
 
-        commands.forEach(cmd => {
+        const commands = commandFiles.map((file) =>
+            require(`../Commands/${file}`)
+        );
+
+        commands.forEach((cmd) => {
+            if (!cmd.name)
+                return console.log('[ undefined ] module name missing...');
+
+            if (cmd.name && (!cmd.description || !cmd.execute))
+                return console.log(
+                    `[ ${cmd.name} ] module contents missing...`
+                );
+
             this.commands.set(cmd.name, cmd);
             console.log(`[ ${cmd.name} ] loaded...`);
         });
