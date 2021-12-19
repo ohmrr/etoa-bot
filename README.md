@@ -5,7 +5,7 @@
 </div>
 
 <div align="center" />
-    <img src="./assets/eTOA.jpeg" alt="eTOA" />
+    <img src="./images/eTOA.jpeg" alt="eTOA" />
 </div>
 
 ## A multi-purpose Discord bot made with Discord.js v13
@@ -26,4 +26,4 @@ yarn add discord.js
 
 Create a folder called "Data" in src. Then, inside the folder, create "config.json". You will need to add a prefix (e!) and a token, which you get from the Discord Developer Portal. Never share your token with anyone.
 
-<img src="./assets/example.png" alt ="example" align="center"/>
+<img src="./images/example.png" alt ="example" align="center"/>
