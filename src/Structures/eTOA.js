@@ -64,7 +64,7 @@ class eTOA extends Client {
              * @type {Event}
              */
             const event = require(`../Events/${file}`);
-            this.on(event.event, event.run.bind(null, this));
+            this.on(event.event, event.execute.bind(null, this));
             console.log(`[ ${event.event} ] module loaded...`);
         });
     }

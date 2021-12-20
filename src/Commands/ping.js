@@ -9,7 +9,7 @@ module.exports = new Command({
             const ping = result.createdTimestamp - message.createdTimestamp;
 
             result.edit(
-                `**Bot**: ${ping}ms\n **Websocket**: ${client.ws.ping}ms 👽`
+                `**Bot**: ${ping}ms\n**Websocket**: ${client.ws.ping}ms 👽`
             );
         });
     },

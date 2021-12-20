@@ -4,9 +4,9 @@ const eTOA = require('./eTOA.js');
 /**
  * @template {keyof Discord.ClientEvents} K
  * @param {eTOA} client 
- * @param  {Discord.ClientEvents[K]} eventArgs 
+ * @param {Discord.ClientEvents[K]} eventArgs 
  */
-function RunFunction(client, ...eventArgs) {}
+function execute(client, ...eventArgs) {}
 
 /**
  * @template {keyof Discord.ClientEvents} K
@@ -14,11 +14,11 @@ function RunFunction(client, ...eventArgs) {}
 class Event {
     /**
      * @param {K} event 
-     * @param {RunFunction<K>} runFunction 
+     * @param {execute<K>} execute 
      */
-    constructor(event, runFunction) {
+    constructor(event, execute) {
         this.event = event;
-        this.run = runFunction;
+        this.execute = execute;
     }
 }
 
