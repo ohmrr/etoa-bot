@@ -1,5 +1,5 @@
-const eTOA = require('./eTOA.js');
 const Discord = require('discord.js');
+const eTOA = require('./eTOA.js');
 
 /**
  * @param {Discord.Message} message

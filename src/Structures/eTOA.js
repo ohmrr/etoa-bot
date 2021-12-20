@@ -1,7 +1,8 @@
 const { Client, Collection, Intents } = require('discord.js');
-const fs = require('fs');
 const Command = require('./Command.js');
+const Event = require('./Event.js');
 const config = require('../Data/config.json');
+const fs = require('fs');
 const intents = new Intents(4039);
 
 class eTOA extends Client {
@@ -24,9 +25,13 @@ class eTOA extends Client {
         this.ownerId = config.ownerId;
 
         this.loadCommands();
+        this.loadEvents();
     }
 
     loadCommands() {
+        /**
+         * @type {Command[]}
+         */
         const commandFiles = fs
             .readdirSync('./src/Commands')
             .filter((file) => file.endsWith('.js'));
@@ -45,7 +50,22 @@ class eTOA extends Client {
                 );
 
             this.commands.set(cmd.name, cmd);
-            console.log(`[ ${cmd.name} ] loaded...`);
+            console.log(`[ ${cmd.name} ] module loaded...`);
+        });
+    }
+
+    loadEvents() {
+        const eventFiles = fs
+            .readdirSync('./src/Events')
+            .filter((file) => file.endsWith('.js'));
+
+        eventFiles.forEach((file) => {
+            /**
+             * @type {Event}
+             */
+            const event = require(`../Events/${file}`);
+            this.on(event.event, event.run.bind(null, this));
+            console.log(`[ ${event.event} ] module loaded...`);
         });
     }
 

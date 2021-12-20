@@ -5,6 +5,12 @@ module.exports = new Command({
     description: 'Shows the ping of the bot',
 
     async execute(message, args, client) {
-        console.log('hello');
+        message.channel.send('**Bot**:').then((result) => {
+            const ping = result.createdTimestamp - message.createdTimestamp;
+
+            result.edit(
+                `**Bot**: ${ping}ms\n **Websocket**: ${client.ws.ping}ms 👽`
+            );
+        });
     },
 });
