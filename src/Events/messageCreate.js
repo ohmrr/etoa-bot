@@ -7,8 +7,12 @@ module.exports = new Event('messageCreate', (client, message) => {
     
     const args = message.content.substring(client.prefix.length).split(/ +/);
     const command = client.commands.find(cmd => cmd.name === args[0]);
-
+    
     if (!command) return;
 
-    command.execute(message, args, client);
+    try {
+        command.execute(message, args, client);
+    } catch (error) {
+        console.error(error);
+    }
 });
