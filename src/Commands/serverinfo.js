@@ -13,8 +13,13 @@ module.exports = new Command({
         const guildOwner = (await message.guild.fetchOwner()).displayName;
 
         const serverInfo = new MessageEmbed()
-            .setAuthor(guild.name, guild.iconURL())
-            .setThumbnail(guild.iconURL({ dynamic: true }))
+            .setAuthor(
+                guild.name,
+                guild.iconURL({ dynamic: true, format: 'png', size: 4096 })
+            )
+            .setThumbnail(
+                guild.iconURL({ dynamic: true, format: 'png', size: 4096 })
+            )
             .setColor('RANDOM')
             .setFields(
                 {
@@ -26,7 +31,8 @@ module.exports = new Command({
                     name: 'Categories',
                     value: 'test',
                     inline: true,
-                })
+                }
+            )
             .setFooter(`ID: ${guild.id} | Server Created: ${createdDate}`);
 
         message.channel.send({ embeds: [serverInfo] });
