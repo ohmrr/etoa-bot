@@ -6,7 +6,9 @@ const eTOA = require('./eTOA.js');
  * @param {string[]} args
  * @param {eTOA} client
  */
-function execute(message, args, client) {}
+function execute(message, args, client) { }
+
+// For future discord slash commands, if (commandType === 'slash or both') message.reply
 
 class Command {
     /**
