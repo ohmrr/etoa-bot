@@ -20,7 +20,11 @@ module.exports = new Command({
                 'You cannot delete more than 100 messages 👽'
             );
 
-        await message.channel.bulkDelete(msgNum);
+        try {
+            (await message.channel.bulkDelete(msgNum));
+        } catch (error) {
+            console.error(error);
+        }
 
         await message.channel.send(`Deleted ${msgNum} messages 👽`);
     },

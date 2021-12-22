@@ -10,7 +10,9 @@ module.exports = new Command({
     async execute(message, args, client) {
         const guild = message.guild;
         const createdDate = moment(guild.createdTimestamp).calendar();
-        const guildOwner = (await message.guild.fetchOwner()).displayName;
+        const owner = (await guild.fetchOwner()).user;
+        const ownerUser = `${owner.username}#${owner.discriminator}`;
+        const channels = guild.channels.cache;
 
         const serverInfo = new MessageEmbed()
             .setAuthor(
@@ -24,14 +26,29 @@ module.exports = new Command({
             .setFields(
                 {
                     name: 'Owner',
-                    value: guildOwner,
+                    value: ownerUser,
                     inline: true,
                 },
                 {
-                    name: 'Categories',
-                    value: 'test',
+                    name: 'Members',
+                    value: guild.memberCount.toString(),
                     inline: true,
-                }
+                },
+                // {
+                //     name: 'Categories',
+                //     value: channels.filter(channel => channel.type === 'GUILD_CATEGORY'),
+                //     inline: true,
+                // },
+                // {
+                //     name: 'Text Channels',
+                //     value: channels.filter(channel => channel.type === 'GUILD_TEXT'),
+                //     inline: true,
+                // },
+                // {
+                //     name: 'Voice Channels',
+                //     value: channels.filter(channel => channel.type === 'GUILD_VOICE'),
+                //     inline: true,
+                // },
             )
             .setFooter(`ID: ${guild.id} | Server Created: ${createdDate}`);
 

@@ -6,6 +6,9 @@ module.exports = new Command({
     permission: 'SEND_MESSAGES',
 
     async execute(message, args, client) {
+        if (!args[1])
+            return message.channel.send('What do you want me to repeat? 👽');
+
         const input = args.splice(1).join(' ');
 
         message.channel.send(input);
