@@ -4,7 +4,8 @@ const Command = require('../Structures/Command.js');
 module.exports = new Command({
     name: 'avatar',
     description: 'Sends the profile picture of the user in PNG format.',
-    permission: 'SEND_MESSAGES',
+    usage: 'e!avatar <user>',
+    userPermission: 'SEND_MESSAGES',
 
     async execute(message, args, client) {
 

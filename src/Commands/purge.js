@@ -3,7 +3,8 @@ const Command = require('../Structures/Command.js');
 module.exports = new Command({
     name: 'purge',
     description: 'Deletes an inputted amount ofmessages in bulk.',
-    permission: 'SEND_MESSAGES' && 'MANAGE_MESSAGES',
+    usage: 'e!purge <amount>',
+    userPermission: 'SEND_MESSAGES' && 'MANAGE_MESSAGES',
 
     async execute(message, args, client) {
         const amount = args[1];

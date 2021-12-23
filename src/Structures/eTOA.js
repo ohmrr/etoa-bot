@@ -52,8 +52,6 @@ class eTOA extends Client {
             this.commands.set(cmd.name, cmd);
             console.log(`[ ${cmd.name} ] module loaded...`);
         });
-
-        console.log('\n');
     }
 
     loadEvents() {
@@ -76,8 +74,6 @@ class eTOA extends Client {
             this.on(event.event, event.execute.bind(null, this));
             console.log(`[ ${event.event} ] module loaded...`);
         });
-
-        console.log('\n');
     }
 
     build() {

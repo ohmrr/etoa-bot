@@ -10,8 +10,8 @@ module.exports = new Event('messageCreate', (client, message) => {
     const command = client.commands.find((cmd) => cmd.name === args[0]);
     if (!command) return;
 
-    const permission = message.member.permissions.has(command.permission, true);
-    if (!permission) return;
+    const userPermission = message.member.permissions.has(command.userPermission, true);
+    if (!userPermission) return message.channel.send('You are missing perm')
 
     try {
         command.execute(message, args, client);

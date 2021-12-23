@@ -5,7 +5,8 @@ const moment = require('moment');
 module.exports = new Command({
     name: 'serverinfo',
     description: 'Sends an embed containing data about the guild.',
-    permission: 'SEND_MESSAGES',
+    usage: 'e!serverinfo',
+    userPermission: 'SEND_MESSAGES',
 
     async execute(message, args, client) {
         const guild = message.guild;

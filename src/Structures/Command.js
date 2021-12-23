@@ -12,13 +12,14 @@ function execute(message, args, client) { }
 
 class Command {
     /**
-     * @typedef {{name: string, description: string, permission: Discord.PermissionString, execute: execute}} CommandOptions
+     * @typedef {{name: string, description: string, usage: string, userPermission: Discord.PermissionString, execute: execute}} CommandOptions
      * @param {CommandOptions} options 
      */
     constructor(options) {
         this.name = options.name;
         this.description = options.description;
-        this.permission = options.permission;
+        this.usage = options.usage;
+        this.userPermission = options.userPermission;
         this.execute = options.execute;
     }
 }

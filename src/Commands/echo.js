@@ -3,7 +3,8 @@ const Command = require('../Structures/Command.js');
 module.exports = new Command({
     name: 'echo',
     description: 'Repeats what you say.',
-    permission: 'SEND_MESSAGES',
+    usage: 'e!echo <message>',
+    userPermission: 'SEND_MESSAGES',
 
     async execute(message, args, client) {
         if (!args[1])
