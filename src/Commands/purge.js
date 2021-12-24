@@ -4,7 +4,8 @@ module.exports = new Command({
     name: 'purge',
     description: 'Deletes an inputted amount ofmessages in bulk.',
     usage: 'e!purge <amount>',
-    userPermission: 'SEND_MESSAGES' && 'MANAGE_MESSAGES',
+    userPermission: ['SEND_MESSAGES', 'MANAGE_MESSAGES'],
+    botPermission: ['SEND_MESSAGES', 'MANAGE_MESSAGES'],
 
     async execute(message, args, client) {
         const amount = args[1];
