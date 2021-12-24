@@ -11,10 +11,21 @@ module.exports = new Command({
 
     async execute(message, args, client) {
         const guild = message.guild;
-        const createdDate = moment(guild.createdTimestamp).calendar();
         const owner = (await guild.fetchOwner()).user;
         const ownerUser = `${owner.username}#${owner.discriminator}`;
+        const members = guild.memberCount.toString();
         const channels = guild.channels.cache;
+        const categories = channels
+            .filter((channel) => channel.type === 'GUILD_CATEGORY')
+            .size.toString();
+        const textChannels = channels
+            .filter((channel) => channel.type === 'GUILD_TEXT')
+            .size.toString();
+        const voiceChannels = channels
+            .filter((channel) => channel.type === 'GUILD_VOICE')
+            .size.toString();
+        const roleNum = guild.roles.cache.size.toString();
+        const createdDate = moment(guild.createdTimestamp).calendar();
 
         const serverInfo = new MessageEmbed()
             .setAuthor(
@@ -32,25 +43,30 @@ module.exports = new Command({
                     inline: true,
                 },
                 {
-                    name: 'Members',
-                    value: guild.memberCount.toString(),
+                    name: 'Category Channels',
+                    value: categories,
                     inline: true,
                 },
-                // {
-                //     name: 'Categories',
-                //     value: channels.filter(channel => channel.type === 'GUILD_CATEGORY'),
-                //     inline: true,
-                // },
-                // {
-                //     name: 'Text Channels',
-                //     value: channels.filter(channel => channel.type === 'GUILD_TEXT'),
-                //     inline: true,
-                // },
-                // {
-                //     name: 'Voice Channels',
-                //     value: channels.filter(channel => channel.type === 'GUILD_VOICE'),
-                //     inline: true,
-                // },
+                {
+                    name: 'Text Channels',
+                    value: textChannels,
+                    inline: true,
+                },
+                {
+                    name: 'Voice Channels',
+                    value: voiceChannels,
+                    inline: true,
+                },
+                {
+                    name: 'Members',
+                    value: members,
+                    inline: true,
+                },
+                {
+                    name: 'Roles',
+                    value: roleNum,
+                    inline: true,
+                }
             )
             .setFooter(`ID: ${guild.id} | Server Created: ${createdDate}`);
 
