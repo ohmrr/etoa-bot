@@ -2,6 +2,8 @@ const Event = require('../Structures/Event.js');
 
 module.exports = new Event('messageCreate', (client, message) => {
     if (message.author.bot) return;
+    if (message.mentions.members.first().id === client.botId)
+        return message.channel.send(`Prefix is ${client.prefix} 👽`);
     if (!message.content.startsWith(client.prefix)) return;
     if (!message.guild) return;
 
@@ -22,7 +24,7 @@ module.exports = new Event('messageCreate', (client, message) => {
         command.botPermission,
         true
     );
-    
+
     if (!botPermission)
         return message.channel.send('I have insufficient permissions 👽');
 
