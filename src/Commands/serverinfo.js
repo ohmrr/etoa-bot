@@ -1,4 +1,4 @@
-const { MessageEmbed, User } = require('discord.js');
+const { MessageEmbed } = require('discord.js');
 const Command = require('../Structures/Command.js');
 const moment = require('moment');
 
@@ -12,20 +12,8 @@ module.exports = new Command({
     async execute(message, args, client) {
         const guild = message.guild;
         const owner = (await guild.fetchOwner()).user;
-        const ownerUser = `${owner.username}#${owner.discriminator}`;
-        const members = guild.memberCount.toString();
         const channels = guild.channels.cache;
-        const categories = channels
-            .filter((channel) => channel.type === 'GUILD_CATEGORY')
-            .size.toString();
-        const textChannels = channels
-            .filter((channel) => channel.type === 'GUILD_TEXT')
-            .size.toString();
-        const voiceChannels = channels
-            .filter((channel) => channel.type === 'GUILD_VOICE')
-            .size.toString();
-        const roleNum = guild.roles.cache.size.toString();
-        const createdDate = moment(guild.createdTimestamp).calendar();
+        const timestamp = moment(guild.createdTimestamp).calendar();
 
         const serverInfo = new MessageEmbed()
             .setAuthor(
@@ -39,36 +27,50 @@ module.exports = new Command({
             .setFields(
                 {
                     name: 'Owner',
-                    value: ownerUser,
+                    value: owner.tag,
                     inline: true,
                 },
                 {
                     name: 'Category Channels',
-                    value: categories,
+                    value: channels
+                        .filter((channel) => channel.type === 'GUILD_CATEGORY')
+                        .size.toString(),
                     inline: true,
                 },
                 {
                     name: 'Text Channels',
-                    value: textChannels,
+                    value: channels
+                        .filter((channel) => channel.type === 'GUILD_TEXT')
+                        .size.toString(),
                     inline: true,
                 },
                 {
                     name: 'Voice Channels',
-                    value: voiceChannels,
+                    value: channels
+                        .filter((channel) => channel.type === 'GUILD_VOICE')
+                        .size.toString(),
                     inline: true,
                 },
                 {
                     name: 'Members',
-                    value: members,
+                    value: guild.memberCount.toString(),
                     inline: true,
                 },
                 {
                     name: 'Roles',
-                    value: roleNum,
+                    value: guild.roles.cache.size.toString(),
+                    inline: true,
+                },
+                {
+                    name: 'Role List',
+                    value: guild.roles.cache
+                        .sort((a, b) => b.position - a.position)
+                        .map((role) => role)
+                        .join(', '),
                     inline: true,
                 }
             )
-            .setFooter(`ID: ${guild.id} | Server Created: ${createdDate}`);
+            .setFooter(`ID: ${guild.id} | Server Created: ${timestamp}`);
 
         message.channel.send({ embeds: [serverInfo] });
     },
