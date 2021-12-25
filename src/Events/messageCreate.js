@@ -3,6 +3,8 @@ const Event = require('../Structures/Event.js');
 module.exports = new Event('messageCreate', (client, message) => {
     if (!message.guild) return;
     if (message.author.bot) return;
+    if (message.content === `<@!${client.botId}>`)
+        return message.channel.send(`My prefix here is \`${client.prefix}\``);
     if (!message.content.startsWith(client.prefix)) return;
 
     const args = message.content.substring(client.prefix.length).split(/ +/);

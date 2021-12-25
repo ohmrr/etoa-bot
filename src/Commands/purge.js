@@ -2,7 +2,7 @@ const Command = require('../Structures/Command.js');
 
 module.exports = new Command({
     name: 'purge',
-    description: 'Deletes an inputted amount ofmessages in bulk.',
+    description: 'Deletes an inputted amount of messages.',
     usage: 'e!purge [amount]',
     userPermission: ['SEND_MESSAGES', 'MANAGE_MESSAGES'],
     botPermission: ['SEND_MESSAGES', 'MANAGE_MESSAGES'],
