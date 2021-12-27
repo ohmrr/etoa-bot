@@ -20,7 +20,6 @@ class eTOA extends Client {
          */
         this.commands = new Collection();
 
-        this.botName = config.botName;
         this.prefix = config.prefix;
         this.ownerId = config.ownerId;
 
