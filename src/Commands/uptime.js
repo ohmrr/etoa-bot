@@ -16,8 +16,8 @@ module.exports = new Command({
         const minutes = Math.floor(totalSeconds / 60) % 60;
         const seconds = Math.floor(totalSeconds) % 60;
 
-        const dayUnit = days == 1 ? 'day' : 'days';
-        const hourUnit = hours == 1 ? 'hr' : 'hrs';
+        const dayUnit = days === 1 ? 'day' : 'days';
+        const hourUnit = hours === 1 ? 'hr' : 'hrs';
 
         const uptime =
             days > 0
