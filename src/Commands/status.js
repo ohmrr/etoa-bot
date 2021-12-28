@@ -14,15 +14,15 @@ module.exports = new Command({
         if (!message.author.id === client.ownerId) {
             statusChanged
                 .setColor('RED')
-                .setDescription('🟥 You are not the owner of this bot.');
+                .setDescription('🔴 You are not the owner of this bot.');
 
             return message.channel.send({ embeds: [statusChanged] });
         }
 
         if (!args[1]) {
             statusChanged
-                .setColor('NOT_QUITE_BLACK')
-                .setDescription('🟥 You are missing the type of activity.');
+                .setColor('RED')
+                .setDescription('🔴 You are missing the type of activity.');
 
             return message.channel.send({ embeds: [statusChanged] });
         }
@@ -31,7 +31,7 @@ module.exports = new Command({
             statusChanged
                 .setColor('RED')
                 .setDescription(
-                    '🟥 You are missing the message of the activity.'
+                    '🔴 You are missing the message of the activity.'
                 );
 
             return message.channel.send({ embeds: [statusChanged] });
@@ -46,7 +46,7 @@ module.exports = new Command({
         if (!isValid) {
             statusChanged
                 .setColor('RED')
-                .setDescription(`🟥 That is not a valid type of activity`);
+                .setDescription(`🔴 That is not a valid type of activity`);
 
             return message.channel.send({ embeds: [statusChanged] });
         }
@@ -62,7 +62,7 @@ module.exports = new Command({
 
             statusChanged
                 .setColor('RED')
-                .setDescription('🟥 Command failed...');
+                .setDescription('🔴 Command failed...');
         }
     },
 });

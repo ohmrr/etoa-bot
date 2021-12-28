@@ -15,7 +15,7 @@ module.exports = new Command({
         if (!amount) {
             clearMessages
                 .setColor('RED')
-                .setDescription('🟥 Enter an amount of messages to purge.');
+                .setDescription('🔴 Enter an amount of messages to purge.');
 
             return message.channel.send({ embeds: [clearMessages] });
         }
@@ -23,7 +23,7 @@ module.exports = new Command({
         if (isNaN(amount)) {
             clearMessages
                 .setColor('RED')
-                .setDescription('🟥 Enter a number of messages to purge.');
+                .setDescription('🔴 Enter a number of messages to purge.');
 
             return message.channel.send({ embeds: [clearMessages] });
         }
@@ -33,7 +33,7 @@ module.exports = new Command({
         if (msgNum > 100) {
             clearMessages
                 .setColor('RED')
-                .setDescription('🟥 Amount must be less than 100.');
+                .setDescription('🔴 Amount must be less than 100.');
 
             return message.channel.send({ embeds: [clearMessages] });
         }

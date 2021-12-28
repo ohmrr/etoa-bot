@@ -12,13 +12,14 @@ module.exports = new Command({
         const member = message.mentions.members.first() || message.member;
         const memberIcon = member.displayAvatarURL({ dynamic: true, format: 'png', size: 4096 });
 
-        const avatar = new MessageEmbed()
+        const userAvatar = new MessageEmbed()
             .setAuthor(
                 member.user.tag,
                 memberIcon
             )
             .setImage(memberIcon)
+            .setColor('GREEN');
         
-        message.channel.send({ embeds: [avatar] });
+        message.channel.send({ embeds: [userAvatar] });
     },
 });

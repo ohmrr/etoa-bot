@@ -8,11 +8,22 @@ module.exports = new Command({
     botPermission: ['SEND_MESSAGES'],
 
     async execute(message, args, client) {
-        if (!args[1])
-            return message.channel.send('What do you want me to repeat? 👽');
+        const repeatMessage = new MessageEmbed();
+
+        if (!args[1]) {
+            repeatMessage
+                .setColor('RED')
+                .setDescription('🔴 Enter a message for me to repeat.');
+            
+            return message.channel.send({ embeds: [repeatMessage] });
+        }
 
         const input = args.splice(1).join(' ');
 
-        message.channel.send(input);
+        repeatMessage
+            .setColor('GREEN')
+            .setDescription(input);
+        
+        message.channel.send({ embeds: [repeatMessage] });
     },
 });
