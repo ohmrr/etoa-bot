@@ -1,6 +1,7 @@
 const { Client, Collection, Intents } = require('discord.js');
 const Command = require('./Command.js');
 const Event = require('./Event.js');
+const moment = require('moment');
 const config = require('../Data/config.json');
 const fs = require('fs');
 const intents = new Intents(4039);
@@ -77,6 +78,7 @@ class eTOA extends Client {
 
     build() {
         this.login(config.token);
+        this.lastStarted = moment(Date.now()).calendar();
     }
 }
 
