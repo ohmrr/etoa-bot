@@ -8,15 +8,12 @@ module.exports = new Command({
     botPermission: ['SEND_MESSAGES'],
 
     async execute(message, args, client) {
-        const pong = ['Pong', 'Poing', 'Peng', 'Pang', 'Pung', 'Boing', 'Ping'];
-        const msg = '**' + pong[Math.round(Math.random() * pong.length)] + '**';
+        const resultList = ['Ping', 'Pong', 'Peng', 'Pang', 'Pung', 'Boing'];
+        const result = resultList[Math.round(Math.random() * resultList.length)];
 
-        message.channel.send(msg).then((result) => {
-            const ping = result.createdTimestamp - message.createdTimestamp;
+        const msg = await message.channel.send(`**${result}**: ... | Websocket: ...`);
+        const ping = msg.createdTimestamp - message.createdTimestamp;
 
-            result.edit(
-                `${msg}: ${ping}ms\n**Websocket**: ${client.ws.ping}ms 👽`
-            );
-        });
+        msg.edit(`**${result}**: ${ping}ms | **Websocket**: ${client.ws.ping}ms 👽`);
     },
 });

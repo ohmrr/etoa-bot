@@ -23,7 +23,7 @@ module.exports = new Command({
             .setThumbnail(
                 guild.iconURL({ dynamic: true, format: 'png', size: 4096 })
             )
-            .setColor('RANDOM')
+            .setColor('GREEN')
             .setFields(
                 {
                     name: 'Owner',
