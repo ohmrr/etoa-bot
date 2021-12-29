@@ -9,10 +9,10 @@ module.exports = new Command({
     botPermission: ['SEND_MESSAGES', 'MANAGE_MESSAGES'],
 
     async execute(message, args, client) {
-        const clearMessages = new MessageEmbed();
+        const clearMessages = new MessageEmbed()
         const amount = args[1];
 
-        if (!amount) {
+        if (!amount || amount == 0) {
             clearMessages
                 .setColor('RED')
                 .setDescription('🔴 Enter an amount of messages to purge.');
