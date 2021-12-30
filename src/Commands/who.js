@@ -27,6 +27,6 @@ module.exports = new Command({
             .setTitle(randMember.user.tag)
             .setImage(randMember.displayAvatarURL({ dynamic: true, format: 'png', size: 4096 }));
         
-        message.channel.send({ content: `🔮 ${message.author.username} 🔮`, embeds: [whoResponse] });
+        message.channel.send({ content: `🔮 **${message.author.username}** 🔮`, embeds: [whoResponse] });
     },
 });
