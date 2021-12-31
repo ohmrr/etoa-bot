@@ -39,7 +39,7 @@ module.exports = new Command({
 
         const types = ['PLAYING', 'WATCHING', 'LISTENING', 'COMPETING'];
         const statusType = args[1].toUpperCase();
-        const statusMessage = args.splice(2).join(' ');
+        const statusMessage = args.slice(2).join(' ');
 
         const isValid = types.includes(statusType);
 

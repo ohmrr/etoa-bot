@@ -9,7 +9,7 @@ module.exports = new Command({
     botPermission: ['SEND_MESSAGES', 'EMBED_LINKS'],
 
     async execute(message, args, client) {
-        const question = args.splice(1).join(' ');
+        const question = args.slice(1).join(' ');
         const whoResponse = new MessageEmbed()
 
         if (!question) {

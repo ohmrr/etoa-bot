@@ -19,7 +19,7 @@ module.exports = new Command({
             return message.channel.send({ embeds: [repeatMessage] });
         }
 
-        const input = args.splice(1).join(' ');
+        const input = args.slice(1).join(' ');
 
         repeatMessage
             .setColor('GREEN')
