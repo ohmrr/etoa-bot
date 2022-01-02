@@ -2,6 +2,7 @@ const { Client, Collection, Intents } = require('discord.js');
 const Command = require('./Command.js');
 const Event = require('./Event.js');
 const moment = require('moment');
+const chalk = require('chalk');
 const config = require('../Data/config.json');
 const fs = require('fs');
 const intents = new Intents(4039);
@@ -43,14 +44,16 @@ class eTOA extends Client {
         commands.forEach((cmd) => {
             if (cmd.name && (!cmd.description || !cmd.execute))
                 return console.log(
-                    `[ ${cmd.name} ] module contents missing...`
+                    chalk.red(`[ ${cmd.name} ] module contents missing...`)
                 );
-            
+
             if (!cmd.name)
-                return console.log('[ undefined ] module name missing...');
-            
+                return console.log(
+                    chalk.red('[ undefined ] module name missing...')
+                );
+
             this.commands.set(cmd.name, cmd);
-            console.log(`[ ${cmd.name} ] module loaded...`);
+            console.log(chalk.whiteBright(`[ ${cmd.name} ] module loaded...`));
         });
     }
 
@@ -66,13 +69,17 @@ class eTOA extends Client {
             const event = require(`../Events/${file}`);
 
             if (event.event && !event.execute)
-                return console.log(`[ ${event.event} ] module contents missing...`);
-            
+                return console.log(
+                    chalk.red(`[ ${event.event} ] module contents missing...`)
+                );
+
             if (!event.event && !event.execute)
-                return console.log('[ undefined ] module name missing...');
-            
+                return console.log(
+                    chalk.red('[ undefined ] module name missing...')
+                );
+
             this.on(event.event, event.execute.bind(null, this));
-            console.log(`[ ${event.event} ] module loaded...`);
+            console.log(chalk.whiteBright(`[ ${event.event} ] module loaded...`));
         });
     }
 

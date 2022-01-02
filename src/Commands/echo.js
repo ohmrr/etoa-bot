@@ -9,7 +9,7 @@ module.exports = new Command({
     botPermission: ['SEND_MESSAGES'],
 
     async execute(message, args, client) {
-        const repeatMessage = new MessageEmbed()
+        const repeatMessage = new MessageEmbed();
 
         if (!args[1]) {
             repeatMessage

@@ -9,11 +9,16 @@ module.exports = new Command({
 
     async execute(message, args, client) {
         const resultList = ['Ping', 'Pong', 'Peng', 'Pang', 'Pung', 'Boing'];
-        const result = resultList[Math.round(Math.random() * resultList.length)];
+        const result =
+            resultList[Math.round(Math.random() * resultList.length)];
 
-        const msg = await message.channel.send(`**${result}**: ... | Websocket: ...`);
+        const msg = await message.channel.send(
+            `**${result}**: ... | Websocket: ...`
+        );
         const ping = msg.createdTimestamp - message.createdTimestamp;
 
-        msg.edit(`**${result}**: ${ping}ms | **Websocket**: ${client.ws.ping}ms 👽`);
+        msg.edit(
+            `**${result}**: ${ping}ms | **Websocket**: ${client.ws.ping}ms 👽`
+        );
     },
 });

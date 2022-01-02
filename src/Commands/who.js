@@ -4,7 +4,7 @@ const Command = require('../Structures/Command.js');
 module.exports = new Command({
     name: 'who',
     description: 'Replies to a question with a random user.',
-    usage: 'e!who <question>',
+    usage: 'e!who [question]',
     userPermission: ['SEND_MESSAGES'],
     botPermission: ['SEND_MESSAGES', 'EMBED_LINKS'],
 
@@ -23,7 +23,7 @@ module.exports = new Command({
         const randMember = message.guild.members.cache.random();
 
         whoResponse
-            .setColor('DARK_BUT_NOT_BLACK')
+            .setColor('#010203')
             .setTitle(randMember.user.tag)
             .setImage(randMember.displayAvatarURL({ dynamic: true, format: 'png', size: 4096 }));
         
