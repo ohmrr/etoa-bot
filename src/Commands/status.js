@@ -60,7 +60,7 @@ module.exports = new Command({
                 .setColor('GREEN')
                 .setDescription(`Status successfully changed 👽`);
         } catch (error) {
-            console.error(chalk.red.bold(error));
+            console.error(chalk.red(error));
 
             statusChanged
                 .setColor('RED')

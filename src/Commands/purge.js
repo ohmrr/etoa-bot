@@ -1,5 +1,6 @@
 const { MessageEmbed } = require('discord.js');
 const Command = require('../Structures/Command.js');
+const chalk = require('chalk');
 
 module.exports = new Command({
     name: 'purge',
@@ -46,7 +47,7 @@ module.exports = new Command({
                 .setColor('GREEN')
                 .setDescription(`Purged ${msgNum} messages 👽`);
         } catch (error) {
-            console.error(chalk.red.bold(error));
+            console.error(chalk.red(error));
         }
 
         const msg = await message.channel.send({ embeds: [clearMessages] });

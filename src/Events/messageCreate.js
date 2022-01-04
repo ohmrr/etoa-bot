@@ -1,5 +1,6 @@
 const { MessageEmbed } = require('discord.js');
 const Event = require('../Structures/Event.js');
+const chalk = require('chalk');
 
 module.exports = new Event('messageCreate', (client, message) => {
     if (!message.guild) return;
@@ -59,7 +60,7 @@ module.exports = new Event('messageCreate', (client, message) => {
     try {
         command.execute(message, args, client);
     } catch (error) {
-        console.error(error);
+        console.error(chalk.red(error));
         message.channel.send('Command failed... 👽');
     }
 });
