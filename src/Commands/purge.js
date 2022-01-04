@@ -46,7 +46,7 @@ module.exports = new Command({
                 .setColor('GREEN')
                 .setDescription(`Purged ${msgNum} messages 👽`);
         } catch (error) {
-            console.error(error);
+            console.error(chalk.red.bold(error));
         }
 
         const msg = await message.channel.send({ embeds: [clearMessages] });
