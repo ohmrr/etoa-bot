@@ -11,6 +11,7 @@
 ## A multi-purpose Discord bot made with Discord.js v13
 
 ### Installation:
+
 You will need to install: [Node.JS](https://nodejs.org/en/download) - specifically version 16.6.0 or newer. You can use the node package manager (NPM) to install all the dependencies.
 
 <br />

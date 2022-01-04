@@ -1,17 +1,17 @@
 {
-    "name": "etoa",
-    "version": "1.0.0",
-    "description": "A discord bot made with DiscordJS v13.",
-    "main": "src/index.js",
-    "author": "Ohmrrr",
-    "license": "MIT",
-    "private": false,
-    "scripts": {
-        "start": "node src/index.js"
-    },
-    "dependencies": {
-        "chalk": "4.1.2",
-        "discord.js": "^13.3.1",
-        "moment": "^2.29.1"
-    }
+  "name": "etoa",
+  "version": "1.0.0",
+  "description": "A discord bot made with DiscordJS v13.",
+  "main": "src/index.js",
+  "author": "Ohmrrr",
+  "license": "MIT",
+  "private": false,
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "chalk": "4.1.2",
+    "discord.js": "^13.3.1",
+    "moment": "^2.29.1"
+  }
 }

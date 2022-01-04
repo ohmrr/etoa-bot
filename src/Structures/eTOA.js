@@ -8,85 +8,79 @@ const fs = require('fs');
 const intents = new Intents(4039);
 
 class eTOA extends Client {
-    constructor() {
-        super({
-            allowedMentions: {
-                parse: ['roles', 'users'],
-            },
+  constructor() {
+    super({
+      allowedMentions: {
+        parse: ['roles', 'users'],
+      },
 
-            intents,
-        });
+      intents,
+    });
 
-        /**
-         * @type {Discord.Collection<string, Command>}
-         */
-        this.commands = new Collection();
+    /**
+     * @type {Discord.Collection<string, Command>}
+     */
+    this.commands = new Collection();
 
-        this.prefix = config.prefix;
-        this.ownerId = config.ownerId;
+    this.prefix = config.prefix;
+    this.ownerId = config.ownerId;
 
-        this.loadCommands();
-        this.loadEvents();
-    }
+    this.loadCommands();
+    this.loadEvents();
+  }
 
-    loadCommands() {
-        /**
-         * @type {Command[]}
-         */
-        const commandFiles = fs
-            .readdirSync('./src/Commands')
-            .filter((file) => file.endsWith('.js'));
+  loadCommands() {
+    /**
+     * @type {Command[]}
+     */
+    const commandFiles = fs
+      .readdirSync('./src/Commands')
+      .filter((file) => file.endsWith('.js'));
 
-        const commands = commandFiles.map((file) =>
-            require(`../Commands/${file}`)
+    const commands = commandFiles.map((file) => require(`../Commands/${file}`));
+
+    commands.forEach((cmd) => {
+      if (cmd.name && (!cmd.description || !cmd.execute))
+        return console.log(
+          chalk.red(`[ ${cmd.name} ] module contents missing...`)
         );
 
-        commands.forEach((cmd) => {
-            if (cmd.name && (!cmd.description || !cmd.execute))
-                return console.log(
-                    chalk.red(`[ ${cmd.name} ] module contents missing...`)
-                );
+      if (!cmd.name)
+        return console.log(chalk.red('[ undefined ] module name missing...'));
 
-            if (!cmd.name)
-                return console.log(
-                    chalk.red('[ undefined ] module name missing...')
-                );
+      this.commands.set(cmd.name, cmd);
+      console.log(chalk.whiteBright(`[ ${cmd.name} ] module loaded...`));
+    });
+  }
 
-            this.commands.set(cmd.name, cmd);
-            console.log(chalk.whiteBright(`[ ${cmd.name} ] module loaded...`));
-        });
-    }
+  loadEvents() {
+    const eventFiles = fs
+      .readdirSync('./src/Events')
+      .filter((file) => file.endsWith('.js'));
 
-    loadEvents() {
-        const eventFiles = fs
-            .readdirSync('./src/Events')
-            .filter((file) => file.endsWith('.js'));
+    eventFiles.forEach((file) => {
+      /**
+       * @type {Event}
+       */
+      const event = require(`../Events/${file}`);
 
-        eventFiles.forEach((file) => {
-            /**
-             * @type {Event}
-             */
-            const event = require(`../Events/${file}`);
+      if (event.event && !event.execute)
+        return console.log(
+          chalk.red(`[ ${event.event} ] module contents missing...`)
+        );
 
-            if (event.event && !event.execute)
-                return console.log(
-                    chalk.red(`[ ${event.event} ] module contents missing...`)
-                );
+      if (!event.event && !event.execute)
+        return console.log(chalk.red('[ undefined ] module name missing...'));
 
-            if (!event.event && !event.execute)
-                return console.log(
-                    chalk.red('[ undefined ] module name missing...')
-                );
+      this.on(event.event, event.execute.bind(null, this));
+      console.log(chalk.whiteBright(`[ ${event.event} ] module loaded...`));
+    });
+  }
 
-            this.on(event.event, event.execute.bind(null, this));
-            console.log(chalk.whiteBright(`[ ${event.event} ] module loaded...`));
-        });
-    }
-
-    build() {
-        this.login(config.token);
-        this.lastStarted = moment(Date.now()).calendar();
-    }
+  build() {
+    this.login(config.token);
+    this.lastStarted = moment(Date.now()).calendar();
+  }
 }
 
 module.exports = eTOA;
