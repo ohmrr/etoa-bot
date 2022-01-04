@@ -16,11 +16,15 @@ module.exports = new Event('messageCreate', (client, message) => {
     if (!message.content.startsWith(client.prefix)) return;
 
     const args = message.content.substring(client.prefix.length).split(/ +/);
+    const target = args[0].toLowerCase();
+    
+    const command =
+        client.commands.find((cmd) => cmd.name === target) ||
+        client.commands.find((cmd) => cmd.aliases.includes(target));
 
-    const command = client.commands.find((cmd) => cmd.name === args[0]);
     if (!command) return;
-
-    const userRequirements = new MessageEmbed()
+    
+    const missingPermissions = new MessageEmbed();
 
     const userPermission = message.member.permissions.has(
         command.userPermission,
@@ -28,14 +32,14 @@ module.exports = new Event('messageCreate', (client, message) => {
     );
 
     if (!userPermission) {
-        userRequirements
+        missingPermissions
             .setColor('RED')
-            .setDescription('🔴 You lack the permissions required to run this command.');
-        
+            .setDescription(
+                '🔴 You lack the permissions required to run this command.'
+            );
+
         return message.channel.send({ embeds: [userRequirements] });
     }
-
-    const botRequirements = new MessageEmbed()
 
     const botPermission = message.guild.me.permissions.has(
         command.botPermission,
@@ -43,10 +47,12 @@ module.exports = new Event('messageCreate', (client, message) => {
     );
 
     if (!botPermission) {
-        botRequirements
+        missingPermissions
             .setColor('RED')
-            .setDescription('🔴 I lack the permissions required to run this command.');
-        
+            .setDescription(
+                '🔴 I lack the permissions required to run this command.'
+            );
+
         return message.channel.send({ embeds: [botRequirements] });
     }
 

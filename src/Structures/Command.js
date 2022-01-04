@@ -8,15 +8,14 @@ const eTOA = require('./eTOA.js');
  */
 function execute(message, args, client) { }
 
-// For future discord slash commands, if (commandType === 'slash or both') message.reply
-
 class Command {
     /**
-     * @typedef {{name: string, description: string, usage: string, userPermission: Discord.PermissionString[], botPermission: Discord.PermissionString[], execute: execute}} CommandOptions
+     * @typedef {{name: string, aliases: string[] description: string, usage: string, userPermission: Discord.PermissionString[], botPermission: Discord.PermissionString[], execute: execute}} CommandOptions
      * @param {CommandOptions} options 
      */
     constructor(options) {
         this.name = options.name;
+        this.aliases = options.aliases;
         this.description = options.description;
         this.usage = options.usage;
         this.userPermission = options.userPermission;
