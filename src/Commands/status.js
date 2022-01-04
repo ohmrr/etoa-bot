@@ -3,6 +3,7 @@ const Command = require('../Structures/Command.js');
 
 module.exports = new Command({
     name: 'status',
+    aliases: ['activity'],
     description: 'Changes the status of the bot.',
     usage: 'e!status [type] [status]',
     userPermission: ['SEND_MESSAGES'],

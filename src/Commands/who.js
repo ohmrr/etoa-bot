@@ -3,6 +3,7 @@ const Command = require('../Structures/Command.js');
 
 module.exports = new Command({
     name: 'who',
+    aliases: [],
     description: 'Replies to a question with a random user.',
     usage: 'e!who [question]',
     userPermission: ['SEND_MESSAGES'],

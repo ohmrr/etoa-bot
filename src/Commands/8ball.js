@@ -3,6 +3,7 @@ const Command = require('../Structures/Command');
 
 module.exports = new Command({
     name: '8ball',
+    aliases: ['8b'],
     description: 'Asks the magic 8 ball a question.',
     usage: 'e!8ball [question]',
     userPermission: ['SEND_MESSAGES'],

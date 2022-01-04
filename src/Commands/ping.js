@@ -2,6 +2,7 @@ const Command = require('../Structures/Command.js');
 
 module.exports = new Command({
     name: 'ping',
+    aliases: [],
     description: 'Shows the ping of the bot',
     usage: 'e!ping',
     userPermission: ['SEND_MESSAGES'],

@@ -3,7 +3,8 @@ const Command = require('../Structures/Command');
 
 module.exports = new Command({
     name: 'reload',
-    description: 'Refreshes all the commands.',
+    aliases: ['refresh'],
+    description: 'Reloads all the commands.',
     usage: 'e!reload',
     userPermission: ['SEND_MESSAGES'],
     botPermission: ['SEND_MESSAGES'],

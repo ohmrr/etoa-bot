@@ -4,6 +4,7 @@ const moment = require('moment');
 
 module.exports = new Command({
     name: 'uptime',
+    aliases: [],
     description: 'Shows how long eTOA has been running for.',
     usage: 'e!uptime',
     userPermission: ['SEND_MESSAGES'],

@@ -3,6 +3,7 @@ const Command = require('../Structures/Command.js');
 
 module.exports = new Command({
     name: 'avatar',
+    aliases: ['av'],
     description: 'Sends a users\' avatar.',
     usage: 'e!avatar [user?]',
     userPermission: ['SEND_MESSAGES'],

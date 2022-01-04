@@ -3,6 +3,7 @@ const Command = require('../Structures/Command.js');
 
 module.exports = new Command({
     name: 'echo',
+    aliases: ['say'],
     description: 'Repeats what you say.',
     usage: 'e!echo [message]',
     userPermission: ['SEND_MESSAGES'],
