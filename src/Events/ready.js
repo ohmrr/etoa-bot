@@ -2,7 +2,11 @@ const Event = require('../Structures/Event.js');
 const chalk = require('chalk');
 
 module.exports = new Event('ready', (client) => {
-  console.log(chalk.green.bold('\neTOA-001 is ready for use.'));
+  console.log(
+    chalk.green.bold(
+      `\n\nLogging in as ${client.user.tag}... \neTOA-001 is ready for use.`
+    )
+  );
 
   client.user.setActivity('eTOA-001 | ' + client.prefix, { type: 'WATCHING' });
 });

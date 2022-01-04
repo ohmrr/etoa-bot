@@ -1,5 +1,5 @@
-const { MessageEmbed } = require('discord.js');
 const Event = require('../Structures/Event.js');
+const { MessageEmbed } = require('discord.js');
 const chalk = require('chalk');
 
 module.exports = new Event('messageCreate', (client, message) => {
