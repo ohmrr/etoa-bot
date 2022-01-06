@@ -60,7 +60,8 @@ module.exports = new Event('messageCreate', (client, message) => {
   try {
     command.execute(message, args, client);
   } catch (error) {
-    console.error(chalk.red(error));
     message.channel.send('Command failed... 👽');
+    
+    console.error(chalk.red(error));
   }
 });

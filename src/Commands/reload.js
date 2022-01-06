@@ -1,5 +1,6 @@
 const Command = require('../Structures/Command');
 const { MessageEmbed } = require('discord.js');
+const chalk = require('chalk');
 
 module.exports = new Command({
   name: 'reload',
@@ -19,8 +20,12 @@ module.exports = new Command({
 
       return message.channel.send({ embeds: [reloadCommands] });
     } else {
-      client.commands.sweep(() => true);
-      client.loadCommands();
+      try {
+        client.commands.sweep(() => true);
+        client.loadCommands();
+      } catch (error) {
+        return console.error(chalk.red(error));
+      }
 
       reloadCommands
         .setColor('GREEN')

@@ -58,9 +58,13 @@ module.exports = new Command({
         .setColor('GREEN')
         .setDescription(`Status successfully changed 👽`);
     } catch (error) {
-      console.error(chalk.red(error));
-
-      statusChanged.setColor('RED').setDescription('🔴 Command failed...');
+      statusChanged
+        .setColor('RED')
+        .setDescription('🔴 Command failed...');
+      
+      message.channel.send({ embeds: [statusChanged] });
+      
+      return console.error(chalk.red(error));
     }
   },
 });
