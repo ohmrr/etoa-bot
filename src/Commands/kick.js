@@ -12,7 +12,7 @@ module.exports = new Command({
   async execute(message, args, client) {
     const userKicked = new MessageEmbed();
     const user = args[1].toLowerCase();
-    const reason = args[2];
+    const reason = args[2] ? args.slice(2).join(' ') : null;
 
     if (!user) {
       userKicked
@@ -31,12 +31,12 @@ module.exports = new Command({
         (m) => m.user.tag.toLowerCase() === user
       ) ||
       message.guild.members.cache.find((m) => m.user.id === user);
-    
+
     if (!member) {
       userKicked
         .setColor('RED')
         .setDescription(`🔴 No user by the name of ${user} was found.`);
-      
+
       return message.channel.send({ embeds: [userKicked] });
     }
 
@@ -44,9 +44,20 @@ module.exports = new Command({
       userKicked
         .setColor('RED')
         .setDescription(`🔴 That user can't be kicked.`);
-      
-      return message.channel.send({ embeds: [userKicked] });
-    }
 
+      return message.channel.send({ embeds: [userKicked] });
+    } else {
+      userKicked
+        .setColor('GREEN')
+        .setDescription(`***${member.user.tag} was kicked 👽***`);
+
+      if (reason) {
+        member.kick(reason);
+      } else {
+        member.kick();
+      }
+      
+      message.channel.send({ embeds: [userKicked] });
+    }
   },
 });
