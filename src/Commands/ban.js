@@ -59,6 +59,11 @@ module.exports = new Command({
           member.ban();
         }
       } catch (error) {
+        userBanned
+          .setColor('RED')
+          .setDescription('🔴 Unable kick.');
+        
+        message.channel.send({ embeds: [userBanned] });
         return console.error(chalk.red(error));
       }
 

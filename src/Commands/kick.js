@@ -48,8 +48,6 @@ module.exports = new Command({
 
       return message.channel.send({ embeds: [userKicked] });
     } else {
-      
-
       try {
         if (reason) {
           member.kick(reason);
@@ -57,17 +55,16 @@ module.exports = new Command({
           member.kick();
         }
       } catch (error) {
-        userKicked
-          .setColor('RED')
-          .setDescription('🔴 Unable to kick.');
+        userKicked.setColor('RED').setDescription('🔴 Unable to kick.');
 
+        message.channel.send({ embeds: [userKicked] });
         return console.error(chalk.red(error));
       }
 
       userKicked
         .setColor('GREEN')
         .setDescription(`***${member.user.tag} was kicked 👽***`);
-      
+
       message.channel.send({ embeds: [userKicked] });
     }
   },
