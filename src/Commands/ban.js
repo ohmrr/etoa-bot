@@ -4,7 +4,7 @@ const chalk = require('chalk');
 
 module.exports = new Command({
   name: 'ban',
-  aliases: [],
+  aliases: ['banish', 'exile'],
   description: 'Bans a member from a guild.',
   usage: 'e!ban [user] [reason?]',
   userPermission: ['SEND_MESSAGES', 'BAN_MEMBERS'],
@@ -48,9 +48,7 @@ module.exports = new Command({
       
       return message.channel.send({ embesd: [userBanned] });
     } else {
-      userBanned
-        .setColor('GREEN')
-        .setDescription(`***${member.user.tag} was banned.`);
+      
       
       try {
         if (reason) {
@@ -67,7 +65,11 @@ module.exports = new Command({
         return console.error(chalk.red(error));
       }
 
-      return message.channel.send({ embeds: [userBanned] });
+      userBanned
+        .setColor('GREEN')
+        .setDescription(`***${member.user.tag} was banned.`);
+      
+      message.channel.send({ embeds: [userBanned] });
     }
   },
 });

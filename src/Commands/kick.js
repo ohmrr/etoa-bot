@@ -4,7 +4,7 @@ const chalk = require('chalk');
 
 module.exports = new Command({
   name: 'kick',
-  aliases: [],
+  aliases: ['boot'],
   description: 'Removes a member from a guild.',
   usage: 'e!kick [user] [reason]',
   userPermission: ['SEND_MESSAGES', 'KICK_MEMBERS'],
