@@ -5,7 +5,7 @@ const moment = require('moment');
 const chalk = require('chalk');
 const config = require('../Data/config.json');
 const fs = require('fs');
-const intents = new Intents(4039);
+const intents = new Intents(16335);
 
 class eTOA extends Client {
   constructor() {

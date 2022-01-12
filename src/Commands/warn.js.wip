@@ -1,0 +1,45 @@
+const Command = require('../Structures/Command');
+const { MessageEmbed } = require('discord.js');
+
+module.exports = new Command({
+  name: 'warn',
+  aliases: [],
+  description: 'Warns a user and DMs them.',
+  usage: 'e!warn [user] [reason]',
+  userPermission: ['SEND_MESSAGES', 'MANAGE_GUILD'],
+  botPermission: ['SEND_MESSAGES'],
+
+  async execute(message, args, client) {
+    // Requires eTOA to be connected to a database
+
+    const userWarned = new MessageEmbed();
+    const user = args[1].toLowerCase();
+    const reason = args.slice(2).join(' ');
+
+    if (!user) {
+      userWarned
+        .setColor('RED')
+        .setDescription('🔴 Enter a user to be warned.');
+
+      return message.channel.send({ embeds: [userWarned] });
+    }
+
+    if (!reason) {
+      userWarned
+        .setColor('RED')
+        .setDescription('🔴 Enter a reason for this warning.');
+
+      return message.channel.send({ embeds: [userWarned] });
+    }
+
+    const member =
+      message.mentions.members.first() ||
+      message.guild.members.cache.find(
+        (m) => m.user.username.toLowerCase() === user
+      ) ||
+      message.guild.members.cache.find(
+        (m) => m.user.tag.toLowerCase() === user
+      ) ||
+      message.guild.members.cache.find((m) => m.user.id === user);
+  },
+});
