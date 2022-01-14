@@ -18,6 +18,9 @@ module.exports = new Command({
       return message.channel.send({ embeds: [eightBall] });
     }
 
+    // Want to use images for each result
+    // Also will create a custom emoji to replace the 🔴 with
+
     const results = [
       'Without a doubt.',
       'It is certain.',
