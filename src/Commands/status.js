@@ -55,5 +55,7 @@ module.exports = new Command({
     statusChanged
       .setColor('GREEN')
       .setDescription(`Status successfully changed 👽`);
+
+    message.channel.send({ embeds: [statusChanged] });
   },
 });
