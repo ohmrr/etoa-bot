@@ -1,0 +1,18 @@
+{
+    "env": {
+        "browser": false,
+        "node": true,
+        "es6": true
+    },
+    "extends": ["eslint:recommended", "prettier"],
+    "parserOptions": {
+        "ecmaVersion": 13
+    },
+    "rules": {
+        "semi": "warn",
+        "no-unused-vars": "off",
+        "no-unused-expressions": "error",
+        "no-unreachable": "error",
+        "no-empty": "error"
+    }
+}

@@ -39,7 +39,7 @@ module.exports = new Event('messageCreate', (client, message) => {
         '🔴 You lack the permissions required to run this command.'
       );
 
-    return message.channel.send({ embeds: [userRequirements] });
+    return message.channel.send({ embeds: [missingPermissions] });
   }
 
   const botPermission = message.guild.me.permissions.has(
@@ -54,7 +54,7 @@ module.exports = new Event('messageCreate', (client, message) => {
         '🔴 I lack the permissions required to run this command.'
       );
 
-    return message.channel.send({ embeds: [botRequirements] });
+    return message.channel.send({ embeds: [missingPermissions] });
   }
 
   try {
