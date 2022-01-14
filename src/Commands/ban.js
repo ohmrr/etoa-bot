@@ -1,6 +1,5 @@
 const Command = require('../Structures/Command');
 const { MessageEmbed } = require('discord.js');
-const chalk = require('chalk');
 
 module.exports = new Command({
   name: 'ban',
