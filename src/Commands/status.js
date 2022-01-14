@@ -51,20 +51,10 @@ module.exports = new Command({
       return message.channel.send({ embeds: [statusChanged] });
     }
 
-    try {
-      client.user.setActivity(statusMessage, { type: statusType });
+    client.user.setActivity(statusMessage, { type: statusType });
 
-      statusChanged
-        .setColor('GREEN')
-        .setDescription(`Status successfully changed 👽`);
-    } catch (error) {
-      statusChanged
-        .setColor('RED')
-        .setDescription('🔴 Command failed...');
-      
-      message.channel.send({ embeds: [statusChanged] });
-      
-      return console.error(chalk.red(error));
-    }
+    statusChanged
+      .setColor('GREEN')
+      .setDescription(`Status successfully changed 👽`);
   },
 });

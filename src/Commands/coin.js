@@ -9,7 +9,5 @@ module.exports = new Command({
   userPermission: ['SEND_MESSAGES'],
   botPermission: ['SEND_MESSAGES'],
 
-  async execute(message, args, client) {
-    
-  },
+  async execute(message, args, client) {},
 });

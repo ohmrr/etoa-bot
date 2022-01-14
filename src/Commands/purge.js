@@ -40,15 +40,11 @@ module.exports = new Command({
       return message.channel.send({ embeds: [clearMessages] });
     }
 
-    try {
-      await message.channel.bulkDelete(msgNum);
+    await message.channel.bulkDelete(msgNum);
 
-      clearMessages
-        .setColor('GREEN')
-        .setDescription(`Purged ${msgNum} messages 👽`);
-    } catch (error) {
-      return console.error(chalk.red(error));
-    }
+    clearMessages
+      .setColor('GREEN')
+      .setDescription(`Purged ${msgNum} messages 👽`);
 
     const msg = await message.channel.send({ embeds: [clearMessages] });
 

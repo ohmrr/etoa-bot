@@ -20,12 +20,8 @@ module.exports = new Command({
 
       return message.channel.send({ embeds: [reloadCommands] });
     } else {
-      try {
-        client.commands.sweep(() => true);
-        client.loadCommands();
-      } catch (error) {
-        return console.error(chalk.red(error));
-      }
+      client.commands.sweep(() => true);
+      client.loadCommands();
 
       reloadCommands
         .setColor('GREEN')

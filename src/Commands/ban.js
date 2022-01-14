@@ -32,12 +32,12 @@ module.exports = new Command({
         (m) => m.user.tag.toLowerCase() === user
       ) ||
       message.guild.members.cache.find((m) => m.user.id === user);
-    
+
     if (!member) {
       userBanned
         .setColor('RED')
         .setDescription(`🔴 Could not find user ${user}.`);
-      
+
       return message.channel.send({ embeds: [userBanned] });
     }
 
@@ -45,30 +45,19 @@ module.exports = new Command({
       userBanned
         .setColor('RED')
         .setDescription(`🔴 That user can't be banned.`);
-      
+
       return message.channel.send({ embesd: [userBanned] });
     } else {
-      
-      
-      try {
-        if (reason) {
-          member.ban(reason);
-        } else {
-          member.ban();
-        }
-      } catch (error) {
-        userBanned
-          .setColor('RED')
-          .setDescription('🔴 Unable kick.');
-        
-        message.channel.send({ embeds: [userBanned] });
-        return console.error(chalk.red(error));
+      if (reason) {
+        member.ban(reason);
+      } else {
+        member.ban();
       }
 
       userBanned
         .setColor('GREEN')
         .setDescription(`***${member.user.tag} was banned.`);
-      
+
       message.channel.send({ embeds: [userBanned] });
     }
   },

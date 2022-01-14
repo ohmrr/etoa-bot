@@ -48,17 +48,10 @@ module.exports = new Command({
 
       return message.channel.send({ embeds: [userKicked] });
     } else {
-      try {
-        if (reason) {
-          member.kick(reason);
-        } else {
-          member.kick();
-        }
-      } catch (error) {
-        userKicked.setColor('RED').setDescription('🔴 Unable to kick.');
-
-        message.channel.send({ embeds: [userKicked] });
-        return console.error(chalk.red(error));
+      if (reason) {
+        member.kick(reason);
+      } else {
+        member.kick();
       }
 
       userKicked
