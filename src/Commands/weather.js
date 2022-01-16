@@ -24,22 +24,43 @@ module.exports = new Command({
 
     weather.find({ search: location, degreeType: 'F' }, (error, result) => {
       if (error) {
-        currentWeather
-          .setColor('RED')
-          .setDescription('🔴 There was an error.');
+        currentWeather.setColor('RED').setDescription('🔴 There was an error.');
 
         return message.channel.send({ embeds: [currentWeather] });
       }
 
       if (!result) {
-        currentWeather
-          .setColor('RED')
-          .setDescription('🔴 Nothing was found.');
+        currentWeather.setColor('RED').setDescription('🔴 Nothing was found.');
 
         return message.channel.send({ embeds: [currentWeather] });
       }
-      
+
       const data = result[0];
+      console.log(data);
+
+      currentWeather
+        .setColor('GREEN')
+        .setAuthor('Weather', data.current.imageURL)
+        .setThumbnail()
+        .setFields(
+          {
+            name: 'City',
+            value: data.location.name,
+            inline: true,
+          },
+          {
+            name: 'Temperature',
+            value: `${data.current.temperature} °F`,
+            inline: true,
+          },
+          {
+            name: 'Condition',
+            value: data.current.skytext,
+            inline: true,
+          }
+        );
+
+      message.channel.send({ embeds: [currentWeather] });
     });
   },
 });
