@@ -1,8 +1,8 @@
 const { Client, Collection, Intents } = require('discord.js');
 const Command = require('./Command.js');
 const Event = require('./Event.js');
+const Logger = require('../Functions/logger.js');
 const moment = require('moment');
-const chalk = require('chalk');
 const config = require('../Data/config.json');
 const fs = require('fs');
 const intents = new Intents(16335);
@@ -25,6 +25,8 @@ class eTOA extends Client {
     this.prefix = config.prefix;
     this.ownerId = config.ownerId;
 
+    this.logger = Logger;
+
     this.loadCommands();
     this.loadEvents();
   }
@@ -41,15 +43,13 @@ class eTOA extends Client {
 
     commands.forEach((cmd) => {
       if (cmd.name && (!cmd.description || !cmd.execute))
-        return console.log(
-          chalk.red(`[ ${cmd.name} ] module contents missing...`)
-        );
+        return this.logger('missing', `[ ${cmd.name} ] module contents missing...`);
 
       if (!cmd.name)
-        return console.log(chalk.red('[ undefined ] module name missing...'));
+        return this.logger('missing', '[ undefined ] module name missing...');
 
       this.commands.set(cmd.name, cmd);
-      console.log(chalk.whiteBright(`[ ${cmd.name} ] module loaded...`));
+      this.logger('set', `[ ${cmd.name} ] module loaded...`);
     });
   }
 
@@ -65,15 +65,13 @@ class eTOA extends Client {
       const event = require(`../Events/${file}`);
 
       if (event.event && !event.execute)
-        return console.log(
-          chalk.red(`[ ${event.event} ] module contents missing...`)
-        );
+        return this.logger('missing', `[ ${event.event} ] module contents missing...`);
 
       if (!event.event && !event.execute)
-        return console.log(chalk.red('[ undefined ] module name missing...'));
+        return this.logger('missing', '[ undefined ] module name missing...');
 
       this.on(event.event, event.execute.bind(null, this));
-      console.log(chalk.whiteBright(`[ ${event.event} ] module loaded...`));
+      this.logger('set', `[ ${event.event} ] module loaded...`);
     });
   }
 
