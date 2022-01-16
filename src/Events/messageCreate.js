@@ -1,7 +1,7 @@
 const Event = require('../Structures/Event.js');
 const { MessageEmbed } = require('discord.js');
 
-module.exports = new Event('messageCreate', (client, message) => {
+module.exports = new Event('messageCreate', false, (client, message) => {
   if (!message.guild) return;
   if (message.author.bot) return;
 

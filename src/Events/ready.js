@@ -1,6 +1,6 @@
 const Event = require('../Structures/Event.js');
 
-module.exports = new Event('ready', (client) => {
+module.exports = new Event('ready', true, (client) => {
   client.logger.ready(
     `\nLogging in as ${client.user.tag}... \neTOA-001 is ready for use.\n`
   );

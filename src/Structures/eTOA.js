@@ -43,13 +43,13 @@ class eTOA extends Client {
 
     commands.forEach((cmd) => {
       if (cmd.name && (!cmd.description || !cmd.execute))
-        return this.logger.warn(`[ ${cmd.name} ] module contents missing...`);
+        return this.logger.warn(`[ ${cmd.name} ] command contents missing...`);
 
       if (!cmd.name)
-        return this.logger.warn('[ undefined ] module name missing...');
+        return this.logger.warn('[ undefined ] command name missing...');
 
       this.commands.set(cmd.name, cmd);
-      this.logger.loaded(`[ ${cmd.name} ] module loaded...`);
+      this.logger.loaded(`[ ${cmd.name} ] command loaded...`);
     });
   }
 
@@ -65,13 +65,18 @@ class eTOA extends Client {
       const event = require(`../Events/${file}`);
 
       if (event.event && !event.execute)
-        return this.logger.warn(`[ ${event.event} ] module contents missing...`);
+        return this.logger.warn(
+          `[ ${event.event} ] command contents missing...`
+        );
 
       if (!event.event && !event.execute)
-        return this.logger.warn('[ undefined ] module name missing...');
+        return this.logger.warn('[ undefined ] command name missing...');
 
-      this.on(event.event, event.execute.bind(null, this));
-      this.logger.loaded(`[ ${event.event} ] module loaded...`);
+      if (event.once === true)
+        this.once(event.event, event.execute.bind(null, this));
+      else this.on(event.event, event.execute.bind(null, this));
+
+      this.logger.loaded(`[ ${event.event} ] command loaded...`);
     });
   }
 

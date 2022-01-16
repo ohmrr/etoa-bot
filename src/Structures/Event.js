@@ -14,10 +14,12 @@ function execute(client, ...eventArgs) {}
 class Event {
   /**
    * @param {K} event
+   * @param {boolean} once
    * @param {execute<K>} execute
    */
-  constructor(event, execute) {
+  constructor(event, once, execute) {
     this.event = event;
+    this.once = once;
     this.execute = execute;
   }
 }
