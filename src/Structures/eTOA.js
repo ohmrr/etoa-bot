@@ -1,7 +1,7 @@
 const { Client, Collection, Intents } = require('discord.js');
 const Command = require('./Command.js');
 const Event = require('./Event.js');
-const Logger = require('../Functions/logger.js');
+const Logger = require('../Modules/logger.js');
 const moment = require('moment');
 const config = require('../Data/config.json');
 const fs = require('fs');
@@ -43,13 +43,13 @@ class eTOA extends Client {
 
     commands.forEach((cmd) => {
       if (cmd.name && (!cmd.description || !cmd.execute))
-        return this.logger('missing', `[ ${cmd.name} ] module contents missing...`);
+        return this.logger.warn(`[ ${cmd.name} ] module contents missing...`);
 
       if (!cmd.name)
-        return this.logger('missing', '[ undefined ] module name missing...');
+        return this.logger.warn('[ undefined ] module name missing...');
 
       this.commands.set(cmd.name, cmd);
-      this.logger('set', `[ ${cmd.name} ] module loaded...`);
+      this.logger.loaded(`[ ${cmd.name} ] module loaded...`);
     });
   }
 
@@ -65,13 +65,13 @@ class eTOA extends Client {
       const event = require(`../Events/${file}`);
 
       if (event.event && !event.execute)
-        return this.logger('missing', `[ ${event.event} ] module contents missing...`);
+        return this.logger.warn(`[ ${event.event} ] module contents missing...`);
 
       if (!event.event && !event.execute)
-        return this.logger('missing', '[ undefined ] module name missing...');
+        return this.logger.warn('[ undefined ] module name missing...');
 
       this.on(event.event, event.execute.bind(null, this));
-      this.logger('set', `[ ${event.event} ] module loaded...`);
+      this.logger.loaded(`[ ${event.event} ] module loaded...`);
     });
   }
 
