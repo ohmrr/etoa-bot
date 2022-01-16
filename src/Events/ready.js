@@ -4,7 +4,7 @@ const chalk = require('chalk');
 module.exports = new Event('ready', (client) => {
   console.log(
     chalk.green.bold(
-      `\n\nLogging in as ${client.user.tag}... \neTOA-001 is ready for use.`
+      `\n\nLogging in as ${client.user.tag}... \neTOA-001 is ready for use.\n`
     )
   );
 
