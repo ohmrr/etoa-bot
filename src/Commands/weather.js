@@ -1,7 +1,6 @@
 const Command = require('../Structures/Command');
 const { MessageEmbed } = require('discord.js');
 const weather = require('weather-js');
-const chalk = require('chalk');
 
 module.exports = new Command({
   name: 'weather',
@@ -81,7 +80,7 @@ module.exports = new Command({
             }
           );
       } catch (error) {
-        console.error(chalk.red(error));
+        client.logger.error(error);
         currentWeather.setColor('RED').setDescription('🔴 Nothing was found.');
 
         return message.channel.send({ embeds: [currentWeather] });
