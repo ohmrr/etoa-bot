@@ -45,13 +45,10 @@ module.exports = new Command({
         .setColor('RED')
         .setDescription(`🔴 That user can't be banned.`);
 
-      return message.channel.send({ embesd: [userBanned] });
+      return message.channel.send({ embeds: [userBanned] });
     } else {
-      if (reason) {
-        member.ban(reason);
-      } else {
-        member.ban();
-      }
+      if (reason) member.ban(reason);
+      else member.ban();
 
       userBanned
         .setColor('GREEN')
