@@ -2,7 +2,7 @@ const chalk = require('chalk');
 const moment = require('moment');
 
 const Logger = {
-  timestamp: `\n${moment(Date.now()).format('MM/DD/YYYY, h:mm:ss a')}: `,
+  timestamp: `${moment(Date.now()).format('MM/DD/YYYY, h:mm:ss a')}: `,
 
   log(content) {
     console.log(chalk.white(content));
@@ -21,7 +21,7 @@ const Logger = {
   },
 
   ready(content) {
-    console.log(this.timestamp + chalk.green.bold(content));
+    console.log('\n' + this.timestamp + chalk.green.bold(content));
   },
 };
 
