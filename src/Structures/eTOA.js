@@ -64,7 +64,7 @@ class eTOA extends Client {
        */
       const event = require(`../Events/${file}`);
 
-      if (event.event && (!event.execute || !event.once))
+      if (event.event && (!event.execute || event.once === null))
         return this.logger.warn(
           `[ ${event.event} ] command contents missing...`
         );
