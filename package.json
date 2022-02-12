@@ -1,5 +1,5 @@
 {
-  "name": "etoa",
+  "name": "etoa-old",
   "version": "1.0.0",
   "description": "A discord bot made with DiscordJS v13.",
   "main": "src/index.js",
@@ -8,10 +8,10 @@
   "private": false,
   "repository": {
     "type": "git",
-    "url": "https://github.com/Ohmrrr/etoa"
+    "url": "https://github.com/Ohmrrr/etoa-old"
   },
-  "readme": "https://github.com/Ohmrrr/etoa#readme",
-  "bugs": "https://github.com/Ohmrrr/etoa/issues",
+  "readme": "https://github.com/Ohmrrr/etoa-old#readme",
+  "bugs": "https://github.com/Ohmrrr/etoa-old/issues",
   "engines": {
     "node": ">=16.6.0"
   },
