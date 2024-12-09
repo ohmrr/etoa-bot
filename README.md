@@ -1,14 +1,10 @@
-<div align="center" />
-    <h1>👽 eTOA-001 👽</h1>
-    <hr />
-    <br />
-</div>
-
-<div align="center" />
-    <img src="./images/eTOA.jpeg" alt="eTOA" />
-</div>
+# 👽 eTOA-001
 
 ## A multi-purpose Discord bot made with Discord.js v13
+
+## Note
+
+This project is no longer maintained and uses an outdated version of Discord.js. Instead, [Quabos](https://github.com/ohmrr/quabos) is the successor of eTOA-001.
 
 ### Installation:
 
