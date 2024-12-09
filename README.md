@@ -1,10 +1,10 @@
 # 👽 eTOA-001
 
-## A multi-purpose Discord bot made with Discord.js v13
-
 ## Note
 
 This project is no longer maintained and uses an outdated version of Discord.js. Instead, [Quabos](https://github.com/ohmrr/quabos) is the successor of eTOA-001.
+
+## A multi-purpose Discord bot made with Discord.js v13
 
 ### Installation:
 
